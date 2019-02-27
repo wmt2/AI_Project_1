@@ -145,13 +145,13 @@ public class connectM{
          }
          
          if(winCounter1 == connectM.winNumber){
-            System.out.println("Congradulations Player 1! You WIN!");
+            System.out.println("Congratulations Player 1! You WIN!");
             cM.printBoard();
             System.exit(0);
          }
          
          if(winCounter2 == connectM.winNumber){
-            System.out.println("Congradulations Player 2! You WIN!");
+            System.out.println("Congratulations Player 2! You WIN!");
             cM.printBoard();
             System.exit(0);
          }
@@ -199,13 +199,13 @@ public class connectM{
          }
          
          if(winCounter1 == connectM.winNumber){
-            System.out.println("Congradulations Player 1! You WIN!!");
+            System.out.println("Congratulations Player 1! You WIN!!");
             cM.printBoard();
             System.exit(0);
          }
          
          if(winCounter2 == connectM.winNumber){
-            System.out.println("Congradulations Player 2! You WIN!!");
+            System.out.println("Congratulations Player 2! You WIN!!");
             cM.printBoard();
             System.exit(0);
          }
@@ -235,7 +235,7 @@ public class connectM{
                
                for(int k= 1; (i-k<cM.board.length-1)&&(j+k<cM.board.length-1);k++){
                
-                  System.out.println(cM.board.length + " & " + k);
+                  //System.out.println(cM.board.length + " & " + k);
                   
                   if(cM.board[i-k][j+k]==1){
                      winCounter1++;
@@ -246,7 +246,7 @@ public class connectM{
                      winCounter2=0;
                   }
                   if(winCounter1 == connectM.winNumber){
-                     System.out.println("Congradulations Player 1! You WIN!!!");
+                     System.out.println("Congratulations Player 1! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
@@ -266,7 +266,7 @@ public class connectM{
                   }
 
                   if(winCounter1 == connectM.winNumber){
-                     System.out.println("Congradulations Player 1! You WIN!!!");
+                     System.out.println("Congratulations Player 1! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
@@ -294,7 +294,7 @@ public class connectM{
                      winCounter1=0;
                   }
                   if(winCounter2 == connectM.winNumber){
-                     System.out.println("Congradulations Player 2! You WIN!!!");
+                     System.out.println("Congratulations Player 2! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
@@ -314,7 +314,7 @@ public class connectM{
                   }
 
                   if(winCounter2 == connectM.winNumber){
-                     System.out.println("Congradulations Player 2! You WIN!!!");
+                     System.out.println("Congratulations Player 2! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
