@@ -80,16 +80,22 @@ public class connectM{
       selection = reader.nextInt();
       
       for(int i=board.length-1;i>-1;i--){
+      
+         if(selection > cM.board.length-1){
+            System.out.println("Please select another place to drop.");
+            placeToken(id, cM);
+            break;
+         }
+         
          if(cM.board[i][selection] == 1 || cM.board[i][selection] == 2){
             
          }
          else{
             cM.board[i][selection] = id;
-            findWinnerColumn(cM);
-            findWinnerRow(cM);
-            findWinnerDiagnal(cM);
+            findWinner(cM);
             break;
          }
+
          if(cM.board[0][selection] == 1 || cM.board[0][selection] == 2){
             System.out.println("Please select another place to drop.");
             placeToken(id, cM);
@@ -108,15 +114,18 @@ public class connectM{
   
    for(int j = 0;j<cM.board.length; j++){
       for(int i = cM.board.length-1; i >-1 ;i--){
+         //checks is the node is a 0 and if so breaks out of the loop
          if(cM.board[i][j]==0){
             break;
          }
+         //checks is the node is a 1 and if so checks the nodes above it to see if they are also a 1
          if (cM.board[i][j]==1){
             if(i == cM.board.length-1){
                winCounter1 = 0;
                winCounter1++;
                winCounter2=0;
             }
+            //checks is the node is a 2 and if so checks the nodes above it to see if they are also a 2
             if((i != cM.board.length-1) && ((cM.board[i+1][j] == 1)||(cM.board[i-1][j] == 1))){
                winCounter1++;
                winCounter2=0;
@@ -162,9 +171,11 @@ public class connectM{
   
    for(int i = cM.board.length-1; i >-1 ;i--){
       for(int j = 0;j<cM.board.length; j++){
+         //checks is the node is a 0 and if so breaks out of the loop
          if(cM.board[i][j]==0){
             break;
          }
+         //checks if the node is a 1 and if so checks if the nodes to the right are also 1
          if (cM.board[i][j]==1){
             winCounter2=0;
             if(j == 0){
@@ -175,7 +186,7 @@ public class connectM{
                winCounter1++;
             } 
          }
-
+         //checks if the node is a 2 and if so checks if the nodes to the right are also 2
          if(cM.board[i][j]==2){
             winCounter1=0;
             if(j == 0){
@@ -210,18 +221,27 @@ public class connectM{
   int winCounter2 = 0;
   
    for(int j = 0;j<cM.board.length; j++){
-      for(int i = cM.board.length-1; i >-1 ;i--){
+      for(int i = cM.board.length-1; i >-1 ;i--){ 
+         //checks if the node is a 0 if so breaks out of check
          if(cM.board[i][j]==0){
             break;
          }
+         //checks if node is a 1 if so it continues to check in a diagnal up and to the right and up and to the left
          if (cM.board[i][j]==1){
             if(i == cM.board.length-1){
                winCounter1 = 0;
                winCounter1++;
                winCounter2=0;
                
-               for(int k= 1; k<cM.board.length;k++){
+               for(int k= 1; (i-k<cM.board.length-1)&&(j+k<cM.board.length-1);k++){
+               
+                  System.out.println(cM.board.length + " & " + k);
+                  
                   if(cM.board[i-k][j+k]==1){
+                     winCounter1++;
+                     winCounter2=0;
+                  }
+                  else if((j-k>=0) && (cM.board[i-k][j-k]==1)){
                      winCounter1++;
                      winCounter2=0;
                   }
@@ -232,7 +252,7 @@ public class connectM{
                   }
                }              
             }
-            
+            System.out.println(i + " " + j + " & " + cM.board[i][j]);
             if(i != cM.board.length-1){
                winCounter1++;
                winCounter2=0;
@@ -244,16 +264,7 @@ public class connectM{
                   if(cM.board[i-k][j+k]==1){
                      winCounter1++;
                   }
-                  else if(i != cM.board.length-1){
-                     for(int l = 1; l<cM.board.length-1;l++){
-                        if((cM.board[i+l][j-l]==1) && (i+l < board.length-1)){
-                           winCounter1++;
-                        }
-                        else{
-                           break;
-                        }
-                     }
-                  }
+
                   if(winCounter1 == connectM.winNumber){
                      System.out.println("Congradulations Player 1! You WIN!!!");
                      cM.printBoard();
@@ -263,15 +274,65 @@ public class connectM{
             } 
          }
          
+         //checks if node is a 2 if so it continues to check in a diagnal up and to the right and up and to the left
+         if (cM.board[i][j]==2){
+            if(i == cM.board.length-1){
+               winCounter2 = 0;
+               winCounter2++;
+               winCounter1=0;
+               
+               for(int k= 1; (i-k<cM.board.length-1)&&(j+k<cM.board.length-1);k++){
+               
+                  System.out.println(cM.board.length + " & " + k);
+                  
+                  if(cM.board[i-k][j+k]==2){
+                     winCounter2++;
+                     winCounter1=0;
+                  }
+                  else if((j-k>=0) && (cM.board[i-k][j-k]==2)){
+                     winCounter2++;
+                     winCounter1=0;
+                  }
+                  if(winCounter2 == connectM.winNumber){
+                     System.out.println("Congradulations Player 2! You WIN!!!");
+                     cM.printBoard();
+                     System.exit(0);
+                  }
+               }              
+            }
+            System.out.println(i + " " + j + " & " + cM.board[i][j]);
+            if(i != cM.board.length-1){
+               winCounter2++;
+               winCounter1=0;
+               
+               for(int k= 1; k<cM.board.length-1;k++){
+                  if((i-k>0) || (j+k<board.length-1)){
+                     break;
+                  }
+                  if(cM.board[i-k][j+k]==2){
+                     winCounter2++;
+                  }
+
+                  if(winCounter2 == connectM.winNumber){
+                     System.out.println("Congradulations Player 2! You WIN!!!");
+                     cM.printBoard();
+                     System.exit(0);
+                  }
+               }
+            } 
+         }
                 
          
-         if(winCounter2 == connectM.winNumber){
-            System.out.println("Congradulations Player 2! You WIN!!!");
-            cM.printBoard();
-            System.exit(0);
-         }
+
       }   
    }
+  }
+  
+  //this will run all the check functions to find the winner
+  public static void findWinner(connectM cM){
+   findWinnerColumn(cM);
+   findWinnerRow(cM);
+   findWinnerDiagnal(cM);
   }
   
 }
