@@ -145,13 +145,13 @@ public class connectM{
          }
          
          if(winCounter1 == connectM.winNumber){
-            System.out.println("Congratulations Player 1! You WIN!");
+            System.out.println("Congradulations Player 1! You WIN!");
             cM.printBoard();
             System.exit(0);
          }
          
          if(winCounter2 == connectM.winNumber){
-            System.out.println("Congratulations Player 2! You WIN!");
+            System.out.println("Congradulations Player 2! You WIN!");
             cM.printBoard();
             System.exit(0);
          }
@@ -170,11 +170,7 @@ public class connectM{
   int winCounter2 = 0;
   
    for(int i = cM.board.length-1; i >-1 ;i--){
-      for(int j = 0;j<cM.board.length; j++){
-         //checks is the node is a 0 and if so breaks out of the loop
-         if(cM.board[i][j]==0){
-            break;
-         }
+      for(int j = 0;(j+1)<cM.board.length; j++){
          //checks if the node is a 1 and if so checks if the nodes to the right are also 1
          if (cM.board[i][j]==1){
             winCounter2=0;
@@ -199,13 +195,13 @@ public class connectM{
          }
          
          if(winCounter1 == connectM.winNumber){
-            System.out.println("Congratulations Player 1! You WIN!!");
+            System.out.println("Congradulations Player 1! You WIN!!");
             cM.printBoard();
             System.exit(0);
          }
          
          if(winCounter2 == connectM.winNumber){
-            System.out.println("Congratulations Player 2! You WIN!!");
+            System.out.println("Congradulations Player 2! You WIN!!");
             cM.printBoard();
             System.exit(0);
          }
@@ -222,10 +218,7 @@ public class connectM{
   
    for(int j = 0;j<cM.board.length; j++){
       for(int i = cM.board.length-1; i >-1 ;i--){ 
-         //checks if the node is a 0 if so breaks out of check
-         if(cM.board[i][j]==0){
-            break;
-         }
+
          //checks if node is a 1 if so it continues to check in a diagnal up and to the right and up and to the left
          if (cM.board[i][j]==1){
             if(i == cM.board.length-1){
@@ -233,11 +226,11 @@ public class connectM{
                winCounter1++;
                winCounter2=0;
                
-               for(int k= 1; (i-k<cM.board.length-1)&&(j+k<cM.board.length-1);k++){
+               for(int k= 1; (i-k)>-1;k++){
                
                   //System.out.println(cM.board.length + " & " + k);
                   
-                  if(cM.board[i-k][j+k]==1){
+                  if(((j+k)<cM.board.length) && (cM.board[i-k][j+k]==1)){
                      winCounter1++;
                      winCounter2=0;
                   }
@@ -246,19 +239,20 @@ public class connectM{
                      winCounter2=0;
                   }
                   if(winCounter1 == connectM.winNumber){
-                     System.out.println("Congratulations Player 1! You WIN!!!");
+                     System.out.println("Congradulations Player 1!! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
                }              
             }
-            System.out.println(i + " " + j + " & " + cM.board[i][j]);
+            //System.out.println(i + " " + j + " & " + cM.board[i][j]);
             if(i != cM.board.length-1){
+               winCounter1=0;
                winCounter1++;
                winCounter2=0;
                
                for(int k= 1; k<cM.board.length-1;k++){
-                  if((i-k>0) || (j+k<board.length-1)){
+                  if((i-k<0) || (j+k>board.length-1) || j-k<0 || (i+k>board.length-1)){
                      break;
                   }
                   if(cM.board[i-k][j+k]==1){
@@ -266,7 +260,7 @@ public class connectM{
                   }
 
                   if(winCounter1 == connectM.winNumber){
-                     System.out.println("Congratulations Player 1! You WIN!!!");
+                     System.out.println("Congradulations Player 1! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
@@ -281,11 +275,10 @@ public class connectM{
                winCounter2++;
                winCounter1=0;
                
-               for(int k= 1; (i-k<cM.board.length-1)&&(j+k<cM.board.length-1);k++){
+               for(int k= 1; (i-k)>-1;k++){
                
-                  System.out.println(cM.board.length + " & " + k);
                   
-                  if(cM.board[i-k][j+k]==2){
+                  if(((j+k)<cM.board.length) && (cM.board[i-k][j+k]==2)){
                      winCounter2++;
                      winCounter1=0;
                   }
@@ -294,19 +287,20 @@ public class connectM{
                      winCounter1=0;
                   }
                   if(winCounter2 == connectM.winNumber){
-                     System.out.println("Congratulations Player 2! You WIN!!!");
+                     System.out.println("Congradulations Player 2!! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
                }              
             }
-            System.out.println(i + " " + j + " & " + cM.board[i][j]);
+            
             if(i != cM.board.length-1){
+               winCounter2=0;
                winCounter2++;
                winCounter1=0;
                
                for(int k= 1; k<cM.board.length-1;k++){
-                  if((i-k>0) || (j+k<board.length-1)){
+                  if((i-k<0) || (j+k>board.length-1) || j-k<0 || (i+k>board.length-1)){
                      break;
                   }
                   if(cM.board[i-k][j+k]==2){
@@ -314,7 +308,7 @@ public class connectM{
                   }
 
                   if(winCounter2 == connectM.winNumber){
-                     System.out.println("Congratulations Player 2! You WIN!!!");
+                     System.out.println("Congradulations Player 2! You WIN!!!");
                      cM.printBoard();
                      System.exit(0);
                   }
