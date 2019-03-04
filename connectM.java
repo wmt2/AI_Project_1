@@ -7,28 +7,31 @@ public class connectM{
    static int boardHeight=0;
    static int boardWidth=0;
    static int[][] board;
-   //static int[][] tempBoard;
    static int winNumber;
 
    // creates the board on game start
-   public connectM(){  
-      Scanner reader = new Scanner(System.in);    
-      System.out.println("Please Select a Board Size");
-      int size = reader.nextInt();
+   public connectM(int size, int winNum){  
+     // Scanner reader = new Scanner(System.in);    
+     // System.out.println("Please Select a Board Size");
+      //int size = reader.nextInt();
       boardHeight=size;
       boardWidth=size;
       board= new int [boardHeight][boardWidth];
      // tempBoard= new int [boardHeight][boardWidth];
-      System.out.println("Please Select a Winning Number");
-      winNumber = reader.nextInt();
+    //  System.out.println("Please Select a Winning Number");
+       winNumber = winNum;
    }
    
    
    public static void main(String args[]){
       int player1 = 1;
       int player2 = 2;
+      
+      int boardSize = Integer.parseInt(args[0]);
+      int numToWin = Integer.parseInt(args[1]);
+
       Scanner reader = new Scanner(System.in);
-      connectM cM=new connectM();
+      connectM cM=new connectM(boardSize, numToWin);
       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
       System.out.println("");
       outer:
